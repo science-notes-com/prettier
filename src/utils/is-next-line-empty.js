@@ -4,12 +4,7 @@ import skipInlineComment from "./skip-inline-comment.js";
 import skipNewline from "./skip-newline.js";
 import skipTrailingComment from "./skip-trailing-comment.js";
 
-/**
- * @param {string} text
- * @param {number} startIndex
- * @returns {boolean}
- */
-function isNextLineEmpty(text, startIndex) {
+export function getNewlineIdx(text, startIndex) {
   /** @type {number | false} */
   let oldIdx = null;
   /** @type {number | false} */
@@ -23,6 +18,17 @@ function isNextLineEmpty(text, startIndex) {
   }
   idx = skipTrailingComment(text, idx);
   idx = skipNewline(text, idx);
+  return idx;
+}
+
+/**
+ * Determin if a block is followed by an empty line
+ * @param {string} text
+ * @param {number} startIndex
+ * @returns {boolean}
+ */
+function isNextLineEmpty(text, startIndex) {
+  const idx = getNewlineIdx(text, startIndex);
   return idx !== false && hasNewline(text, idx);
 }
 
