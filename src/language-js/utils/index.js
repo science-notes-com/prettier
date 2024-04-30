@@ -2,7 +2,7 @@ import { hasDescendant } from "../../utils/ast-utils.js";
 import getStringWidth from "../../utils/get-string-width.js";
 import hasNewline from "../../utils/has-newline.js";
 import isNextLineEmptyAfterIndex from "../../utils/is-next-line-empty.js";
-import areNextLinesEmptyAfterIndex from "../../utils/are-next-lines-empty.js"
+import areNextLinesEmptyAfterIndex from "../../utils/are-next-lines-empty.js";
 import isNonEmptyArray from "../../utils/is-non-empty-array.js";
 import printString from "../../utils/print-string.js";
 import { hasSameLocStart, locEnd, locStart } from "../loc.js";

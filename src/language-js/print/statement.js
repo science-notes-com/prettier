@@ -20,7 +20,7 @@ function printStatementSequence(path, options, print, property) {
     (statement) => statement.type !== "EmptyStatement",
   );
 
-  path.each(({ node }) => {
+  path.each(({ node, parent }) => {
     // Skip printing EmptyStatement nodes to avoid leaving stray
     // semicolons lying around.
     if (node.type === "EmptyStatement") {
@@ -34,9 +34,12 @@ function printStatementSequence(path, options, print, property) {
 
       // Multiple empty lines are turned into 1 or 2 empty lines
       if (isNextLineEmpty(node, options)) {
-        // console.log('next line is empty')
         parts.push(hardline);
-        if (areNextLinesEmpty(node, options)) {
+        if (
+          parent &&
+          parent.type === "Program" &&
+          areNextLinesEmpty(node, options)
+        ) {
           // console.log('more than one line is empty')
           parts.push(hardline);
         }
